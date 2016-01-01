@@ -8,14 +8,14 @@ var path = require('path');
 
 var testPath = process.argv[2] ? process.argv[2] : 'test';
 var testsOnly = process.argv[3] && process.argv[3] === '--tests-only';
-var watchPath = testsOnly ? testPath : path.join(__dirname, '../../../');
+var watchPath = testsOnly ? testPath : '.';
 
 
-var args = ['-w', watchPath, '-q', '-i', path.join(__dirname, '../../../node_modules'), '--', path.join(__dirname, '../lib/watcher.js'), testPath, testsOnly];
+var args = ['-w', watchPath, '-q', '-i', 'node_modules', '--', path.join(__dirname, '../lib/watcher.js'), testPath];
 
 supervisor.run(args);
 var exec = require('child_process').exec;
-var cmd = 'reload -b -s coverage.html';
+var cmd = 'reload -b -s node_modules/test-monitor/coverage.html';
 
 exec(cmd, function(error, stdout, stderr) {
 
