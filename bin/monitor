@@ -11,11 +11,11 @@ var testsOnly = process.argv[3] && process.argv[3] === '--tests-only';
 var watchPath = testsOnly ? testPath : '.';
 
 
-var args = ['-w', watchPath, '-q', '-i', 'node_modules', '--', path.join(__dirname, '../lib/watcher.js'), testPath];
+var args = ['-w', watchPath, '-q', '-i', 'node_modules', '--', path.join(__dirname, '../lib/test-runner.js'), testPath];
 
 supervisor.run(args);
 var exec = require('child_process').exec;
-var cmd = 'reload -b -s node_modules/test-monitor/coverage.html';
+var cmd = 'reload -b -s node_modules/test-monitor/report.html';
 
 exec(cmd, function(error, stdout, stderr) {
 
