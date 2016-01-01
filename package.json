@@ -10,6 +10,7 @@
     "reload"
   ],
   "dependencies": {
+    "lab": "^8.0.1",
     "path": "^0.12.7",
     "reload": "^0.7.0",
     "supervisor": "^0.9.1"
