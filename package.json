@@ -15,7 +15,9 @@
     "supervisor": "^0.9.1"
   },
   "devDependencies": {
-    "lab": "^8.0.1"
+    "code": "^2.1.0",
+    "lab": "^8.0.1",
+    "sinon": "^1.17.2"
   },
   "bin": {
     "test-monitor": "./bin/monitor"
