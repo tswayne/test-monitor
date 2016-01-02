@@ -15,6 +15,11 @@ Test monitor combines a handful of open source tools to help you keep an eye on 
 
 ## How to use:
 
+* Install globally: npm install -g test-monitor
+* Run in app directory: test-monitor <test_suite_path> <--tests-only>
+
+#### OR
+
 * Install the package using install dev: npm install-dev --save test-monitor
 * Add command to npm script in package.json to monitor
 ```javascript
