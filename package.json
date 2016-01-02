@@ -1,6 +1,6 @@
 {
   "name": "test-monitor",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Node.js tool to watch project, run tests, and refresh results and coverage report in browser",
   "keywords": [
     "automation",
