@@ -1,5 +1,7 @@
 # Test Monitor
 
+[![NPM](https://nodei.co/npm/test-monitor.png?downloads=true)](https://nodei.co/npm/test-monitor/)
+
 Automated test monitoring tool.
 
 ## About
