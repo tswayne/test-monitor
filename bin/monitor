@@ -11,7 +11,7 @@ var testsOnly = process.argv[3] && process.argv[3] === '--tests-only';
 var watchPath = testsOnly ? testPath : '.';
 
 
-var args = ['-w', watchPath, '-q', '-n', 'error', '-i', 'node_modules', '--', path.join(__dirname, '../lib/test-runner.js'), testPath];
+var args = ['-w', watchPath, '-q', '-n', 'error', '-n', 'exit', '-i', 'node_modules', '--', path.join(__dirname, '../lib/test-runner.js'), testPath];
 supervisor.run(args);
 
 var exec = require('child_process').exec;

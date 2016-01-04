@@ -6,16 +6,33 @@ var suite = lab.suite;
 var expect = Code.expect;
 var test = lab.test;
 var sinon = require('sinon');
+var testRunner = require('../lib/test-runner');
+var labExecutor = require('../lib/test-executors/lab-executor');
+var runTestsSpy;
 
-var runTests = require('../lib/test-runner').runTests;
-var mockProcess = require('child_process');
+lab.beforeEach(function(done) {
+  runTestsSpy = sinon.spy(labExecutor, 'runTests');
+  done();
+});
+
+lab.afterEach(function(done) {
+  labExecutor.runTests.restore();
+  done();
+});
 
 suite('runTests', function() {
-  test('pulls 12 card from the deck and starts the game', function (done) {
-    mockProcess.exec = sinon.spy();
-    process.argv[2] = 'test'
-    runTests('lab');
-    expect(mockProcess.exec.args[0][0]).to.deep.equal('node_modules/lab/bin/lab -r html -o /home/tyler/dev/test-monitor/report.html test');
+  test('has specified test executor run tests in specified directory', function (done) {
+    testRunner.run('test/unit', 'lab');
+    expect(runTestsSpy.calledOnce).to.equal(true);
+    expect(runTestsSpy.args[0][0]).to.deep.equal('test/unit');
     done();
-  })
+  });
+
+  test('returns error for unrecognized test framework', function (done) {
+    var run = testRunner.run.bind(testRunner, 'test/unit', 'kazoo');
+    expect(run).to.throw(Error, 'no monitor built for kazoo yet, but features are on the way...');
+    done();
+  });
+
 });
+
