@@ -6,25 +6,25 @@ var suite = lab.suite;
 var expect = Code.expect;
 var test = lab.test;
 var sinon = require('sinon');
-var testRunner = require('../lib/test-runner');
-var labExecutor = require('../lib/test-executors/lab-executor');
-var runTestsSpy;
+var testRunner = require('../../lib/test-runner');
+var stubbedLabExecutor = require('../../lib/test-executors/lab-executor');
+
 
 lab.beforeEach(function(done) {
-  runTestsSpy = sinon.spy(labExecutor, 'runTests');
+  sinon.stub(stubbedLabExecutor, 'runTests', sinon.spy());
   done();
 });
 
 lab.afterEach(function(done) {
-  labExecutor.runTests.restore();
+  stubbedLabExecutor.runTests.restore();
   done();
 });
 
 suite('runTests', function() {
   test('has specified test executor run tests in specified directory', function (done) {
     testRunner.run('test/unit', 'lab');
-    expect(runTestsSpy.calledOnce).to.equal(true);
-    expect(runTestsSpy.args[0][0]).to.deep.equal('test/unit');
+    expect(stubbedLabExecutor.runTests.calledOnce).to.equal(true);
+    expect(stubbedLabExecutor.runTests.args[0][0]).to.deep.equal('test/unit');
     done();
   });
 
@@ -33,6 +33,5 @@ suite('runTests', function() {
     expect(run).to.throw(Error, 'no monitor built for kazoo yet, but features are on the way...');
     done();
   });
-
 });
 

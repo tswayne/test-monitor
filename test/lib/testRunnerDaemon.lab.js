@@ -6,18 +6,17 @@ var suite = lab.suite;
 var expect = Code.expect;
 var test = lab.test;
 var sinon = require('sinon');
-var runSpy;
-var testRunner = require('../lib/test-runner');
+var stubbedTestRunner = require('../../lib/test-runner');
 
 lab.beforeEach(function(done) {
-  runSpy = sinon.spy(testRunner, 'run');
+  sinon.stub(stubbedTestRunner, 'run', sinon.spy());
   done();
 });
 
 lab.afterEach(function(done) {
-  testRunner.run.restore();
+  stubbedTestRunner.run.restore();
   //since this file is a script must delete cached instance to be able to run again on require
-  delete require.cache[require.resolve('../lib/testRunnerDaemon')];
+  delete require.cache[require.resolve('../../lib/testRunnerDaemon')];
   done();
 });
 
@@ -27,19 +26,19 @@ suite('testRunnerDaemon', function() {
     process.argv[2] = 'test/unit';
     process.argv[3] = 'lab';
 
-    require('../lib/testRunnerDaemon');
-    expect(testRunner.run.calledOnce).to.equal(true);
-    expect(testRunner.run.args[0]).to.deep.equal(['test/unit', 'lab']);
+    require('../../lib/testRunnerDaemon');
+    expect(stubbedTestRunner.run.calledOnce).to.equal(true);
+    expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test/unit', 'lab']);
     done();
-  })
+  });
 
   test('kicks off test runner with specified and test framework and default directory if no directory specified', function (done) {
     process.argv[2] = undefined;
     process.argv[3] = 'lab';
 
-    require('../lib/testRunnerDaemon');
-    expect(testRunner.run.calledOnce).to.equal(true);
-    expect(testRunner.run.args[0]).to.deep.equal(['test', 'lab']);
+    require('../../lib/testRunnerDaemon');
+    expect(stubbedTestRunner.run.calledOnce).to.equal(true);
+    expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test', 'lab']);
     done();
   })
 });
