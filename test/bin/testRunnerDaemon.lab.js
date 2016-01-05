@@ -16,7 +16,7 @@ lab.beforeEach(function(done) {
 lab.afterEach(function(done) {
   stubbedTestRunner.run.restore();
   //since this file is a script must delete cached instance to be able to run again on require
-  delete require.cache[require.resolve('../../lib/testRunnerDaemon')];
+  delete require.cache[require.resolve('../../bin/testRunnerDaemon')];
   done();
 });
 
@@ -26,7 +26,7 @@ suite('testRunnerDaemon', function() {
     process.argv[2] = 'test/unit';
     process.argv[3] = 'lab';
 
-    require('../../lib/testRunnerDaemon');
+    require('../../bin/testRunnerDaemon');
     expect(stubbedTestRunner.run.calledOnce).to.equal(true);
     expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test/unit', 'lab']);
     done();
@@ -36,7 +36,7 @@ suite('testRunnerDaemon', function() {
     process.argv[2] = undefined;
     process.argv[3] = 'lab';
 
-    require('../../lib/testRunnerDaemon');
+    require('../../bin/testRunnerDaemon');
     expect(stubbedTestRunner.run.calledOnce).to.equal(true);
     expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test', 'lab']);
     done();

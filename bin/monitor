@@ -1,22 +1,12 @@
 #!/usr/bin/env node
 
 'use strict';
+var appMonitor = require('../lib/app-monitor');
 
-var supervisor = require('supervisor');
-var reload = require('reload');
-var path = require('path');
 
 var testPath = process.argv[2] ? process.argv[2] : 'test';
 var testsOnly = process.argv[3] && process.argv[3] === '--tests-only';
 var watchPath = testsOnly ? testPath : '.';
 
-
-var args = ['-w', watchPath, '-q', '-n', 'error', '-n', 'exit', '-i', 'node_modules', '--', path.join(__dirname, '../lib/test-runner.js'), testPath];
-supervisor.run(args);
-
-var exec = require('child_process').exec;
-var cmd = 'node_modules/reload/bin/reload -b -s report.html';
-var options = {cwd:  path.join(__dirname, '..')};
-exec(cmd, options, function(error, stdout, stderr) {
-  if (error) throw error;
-});
+appMonitor.watchDirectoryAndRunTestsOnChanges(watchPath, testPath, 'lab');
+appMonitor.watchReportAndReloadBrowserOnChanges();
