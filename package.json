@@ -10,7 +10,7 @@
     "reload"
   ],
   "scripts": {
-    "test": "lab -c"
+    "test": "node_modules/lab/bin/lab -c -t 95 -L"
   },
   "dependencies": {
     "hoek": "^3.0.4",
