@@ -13,7 +13,7 @@
     "hoek": "^3.0.4",
     "path": "^0.12.7",
     "reload": "^0.7.0",
-    "supervisor": "^0.9.1"
+    "supervisor": "git+https://github.com/tswayne/node-supervisor.git"
   },
   "devDependencies": {
     "code": "^2.1.0",
