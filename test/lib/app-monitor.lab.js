@@ -34,6 +34,15 @@ suite('watchReportAndReloadBrowserOnChanges', function() {
 
     mockProcess.exec.restore();
     done();
+  });
+
+  test('returns without issues if no error is thrown', function (done) {
+    sinon.stub(mockProcess, 'exec');
+    mockProcess.exec.callsArgWith(2, null);
+
+    appMonitor.watchReportAndReloadBrowserOnChanges();
+    mockProcess.exec.restore();
+    done();
   })
 });
 

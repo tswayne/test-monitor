@@ -11,7 +11,7 @@ var mockProcess = require('child_process');
 var executor = require('../../../lib/test-executors/lab-executor');
 
 var containsCorrectPath = function(fullPath) {
-  return fullPath.indexOf('/test-monitor/report.html') > 0;
+  return fullPath.indexOf('/report.html') > 0;
 };
 
 suite('lab: runTests', function() {
@@ -35,6 +35,14 @@ suite('lab: runTests', function() {
     expect(runTests).to.throw(Error, 'error');
 
     mockProcess.exec.restore();
+    done();
+  });
+
+  test('does not throw error when no error is returned', function (done) {
+    sinon.stub(mockProcess, 'exec');
+    mockProcess.exec.callsArgWith(1, null);
+
+    executor.runTests('test');
     done();
   })
 });

@@ -1,12 +1,10 @@
 #!/usr/bin/env node
-
 'use strict';
+
 var appMonitor = require('../lib/app-monitor');
+var argumentParser = require('../lib/argument-parser');
+var args = process.argv.slice(2);
+var argumentObject = argumentParser.parseApplicationArguments(args);
 
-
-var testPath = process.argv[2] ? process.argv[2] : 'test';
-var testsOnly = process.argv[3] && process.argv[3] === '--tests-only';
-var watchPath = testsOnly ? testPath : '.';
-
-appMonitor.watchDirectoryAndRunTestsOnChanges(watchPath, testPath, 'lab');
+appMonitor.watchDirectoryAndRunTestsOnChanges(argumentObject.watchPath, argumentObject.testPath, argumentObject.testExecutor);
 appMonitor.watchReportAndReloadBrowserOnChanges();
