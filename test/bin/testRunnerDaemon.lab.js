@@ -1,3 +1,4 @@
+'use strict';
 var Code = require('code');
 var Lab = require('lab');
 
@@ -40,5 +41,5 @@ suite('testRunnerDaemon', function() {
     expect(stubbedTestRunner.run.calledOnce).to.equal(true);
     expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test', 'lab']);
     done();
-  })
+  });
 });

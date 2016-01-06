@@ -1,3 +1,5 @@
+'use strict';
+
 var Code = require('code');
 var Lab = require('lab');
 
@@ -43,7 +45,7 @@ suite('watchReportAndReloadBrowserOnChanges', function() {
     appMonitor.watchReportAndReloadBrowserOnChanges();
     mockProcess.exec.restore();
     done();
-  })
+  });
 });
 
 suite('watchDirectoryAndRunTestsOnChanges', function() {

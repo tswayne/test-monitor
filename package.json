@@ -1,6 +1,6 @@
 {
   "name": "test-monitor",
-  "version": "0.2.0",
+  "version": "1.0.0",
   "description": "Node.js tool to watch project, run tests, and refresh results and coverage report in browser",
   "keywords": [
     "automation",
@@ -9,6 +9,9 @@
     "test",
     "reload"
   ],
+  "scripts": {
+    "test": "lab -c"
+  },
   "dependencies": {
     "hoek": "^3.0.4",
     "path": "^0.12.7",

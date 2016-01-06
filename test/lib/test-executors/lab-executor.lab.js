@@ -1,3 +1,5 @@
+'use strict';
+
 var Code = require('code');
 var Lab = require('lab');
 
@@ -44,5 +46,5 @@ suite('lab: runTests', function() {
 
     executor.runTests('test');
     done();
-  })
+  });
 });
