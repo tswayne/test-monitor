@@ -1,5 +1,6 @@
 # Test Monitor
 
+[![Build Status](https://travis-ci.org/tswayne/test-monitor.svg?branch=master)](https://travis-ci.org/tswayne/test-monitor)
 [![NPM](https://nodei.co/npm/test-monitor.png?downloads=true)](https://nodei.co/npm/test-monitor/)
 
 Automated test monitoring tool.
