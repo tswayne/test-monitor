@@ -1,6 +1,6 @@
 {
   "name": "test-monitor",
-  "version": "0.2.1",
+  "version": "1.0.0",
   "description": "Node.js tool to watch project, run tests, and refresh results and coverage report in browser",
   "keywords": [
     "automation",
@@ -9,13 +9,19 @@
     "test",
     "reload"
   ],
+  "scripts": {
+    "test": "node_modules/lab/bin/lab -c -t 95 -L"
+  },
   "dependencies": {
+    "hoek": "^3.0.4",
     "path": "^0.12.7",
     "reload": "^0.7.0",
-    "supervisor": "^0.9.1"
+    "supervisor": "git+https://github.com/tswayne/node-supervisor.git"
   },
   "devDependencies": {
-    "lab": "^8.0.1"
+    "code": "^2.1.0",
+    "lab": "^8.0.1",
+    "sinon": "^1.17.2"
   },
   "bin": {
     "test-monitor": "./bin/monitor"
