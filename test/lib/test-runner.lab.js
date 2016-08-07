@@ -26,7 +26,7 @@ suite('runTests', function() {
   test('has specified test executor run tests in specified directory', function (done) {
     testRunner.run('test/unit', 'lab');
     expect(stubbedLabExecutor.runTests.calledOnce).to.equal(true);
-    expect(stubbedLabExecutor.runTests.args[0][0]).to.deep.equal('test/unit');
+    expect(stubbedLabExecutor.runTests.args[0][0]).to.equal('test/unit');
     done();
   });
 

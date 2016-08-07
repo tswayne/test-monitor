@@ -1,10 +1,10 @@
 #!/usr/bin/env node
 'use strict';
 
-var appMonitor = require('../lib/app-monitor');
-var argumentParser = require('../lib/argument-parser');
-var args = process.argv.slice(2);
-var argumentObject = argumentParser.parseApplicationArguments(args);
+const appMonitor = require('../lib/app-monitor');
+const argumentParser = require('../lib/argument-parser');
+const args = process.argv.slice(2);
+const argumentObject = argumentParser.parseApplicationArguments(args);
 
 appMonitor.watchDirectoryAndRunTestsOnChanges(argumentObject.watchPath, argumentObject.testPath, argumentObject.testExecutor);
 appMonitor.watchReportAndReloadBrowserOnChanges();

@@ -1,6 +1,6 @@
 {
   "name": "test-monitor",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Node.js tool to watch project, run tests, and refresh results and coverage report in browser",
   "keywords": [
     "automation",
@@ -10,18 +10,24 @@
     "reload"
   ],
   "scripts": {
-    "test": "node_modules/lab/bin/lab -c -t 95 -L"
+    "test": "node_modules/lab/bin/lab -c -t 95; npm run lint;",
+    "lint": "eslint ."
   },
   "dependencies": {
-    "hoek": "^3.0.4",
+    "hoek": "^4.0.2",
     "path": "^0.12.7",
-    "reload": "^0.7.0",
-    "supervisor": "git+https://github.com/tswayne/node-supervisor.git"
+    "reload": "^1.0.1",
+    "supervisor": "^0.11.0"
   },
   "devDependencies": {
-    "code": "^2.1.0",
-    "lab": "^8.0.1",
-    "sinon": "^1.17.2"
+    "code": "^3.0.2",
+    "eslint": "^2.13.1",
+    "eslint-config-google": "^0.5.0",
+    "lab": "^10.9.0",
+    "sinon": "^1.17.5"
+  },
+  "eslintConfig": {
+    "extends": "google"
   },
   "bin": {
     "test-monitor": "./bin/monitor"
