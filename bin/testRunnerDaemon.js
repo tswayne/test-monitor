@@ -1,9 +1,9 @@
 'use strict';
 
 /* $lab:coverage:off$ */
-var testDirectory = process.argv[2] || 'test';
+const testDirectory = process.argv[2] || 'test';
 /* $lab:coverage:on$ */
-var testExecutorName = process.argv[3];
-var testRunner = require('./../lib/test-runner');
+const testExecutorName = process.argv[3];
+const TestRunner = require('./../lib/test-runner');
 
-testRunner.run(testDirectory, testExecutorName);
+TestRunner.run(testDirectory, testExecutorName);

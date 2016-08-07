@@ -24,11 +24,10 @@ lab.afterEach(function(done) {
   stubbedAppMonitor.watchDirectoryAndRunTestsOnChanges.restore();
   stubbedAppMonitor.watchReportAndReloadBrowserOnChanges.restore();
   stubbedArgumentParser.parseApplicationArguments.restore();
-  //since this file is a script must delete cached instance to be able to run again on require
+  // since this file is a script must delete cached instance to be able to run again on require
   delete require.cache[require.resolve('../../bin/monitor')];
   done();
 });
-
 
 suite('monitor script', function() {
   test('gets parsed arguments and kicks off watchers', function (done) {

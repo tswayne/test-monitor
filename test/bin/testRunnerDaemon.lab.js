@@ -29,7 +29,7 @@ suite('testRunnerDaemon', function() {
 
     require('../../bin/testRunnerDaemon');
     expect(stubbedTestRunner.run.calledOnce).to.equal(true);
-    expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test/unit', 'lab']);
+    expect(stubbedTestRunner.run.args[0]).to.equal(['test/unit', 'lab']);
     done();
   });
 
@@ -39,7 +39,7 @@ suite('testRunnerDaemon', function() {
 
     require('../../bin/testRunnerDaemon');
     expect(stubbedTestRunner.run.calledOnce).to.equal(true);
-    expect(stubbedTestRunner.run.args[0]).to.deep.equal(['test', 'lab']);
+    expect(stubbedTestRunner.run.args[0]).to.equal(['test', 'lab']);
     done();
   });
 });

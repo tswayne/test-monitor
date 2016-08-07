@@ -14,7 +14,7 @@ var fixtures = require('../test-utils/fixtures');
 suite('parseApplicationArguments', function() {
   test('parses argument array into argument object', function (done) {
     var argumentObject = argumentParser.parseApplicationArguments(fixtures.fullArgumentArray());
-    expect(argumentObject).to.deep.equal({testExecutor: 'mocha', testPath: 'tests', watchPath: 'lib'});
+    expect(argumentObject).to.equal({testExecutor: 'mocha', testPath: 'tests', watchPath: 'lib'});
     done();
   });
 
@@ -23,13 +23,13 @@ suite('parseApplicationArguments', function() {
     fullArgArray.push(fullArgArray.shift());
     fullArgArray.push(fullArgArray.shift());
     var argumentObject = argumentParser.parseApplicationArguments(fullArgArray);
-    expect(argumentObject).to.deep.equal({testExecutor: 'mocha', testPath: 'tests', watchPath: 'lib'});
+    expect(argumentObject).to.equal({testExecutor: 'mocha', testPath: 'tests', watchPath: 'lib'});
     done();
   });
 
   test('returns defaults for unspecified arguments', function (done) {
     var argumentObject = argumentParser.parseApplicationArguments([]);
-    expect(argumentObject).to.deep.equal({testExecutor: 'lab', testPath: 'test', watchPath: '.'});
+    expect(argumentObject).to.equal({testExecutor: 'lab', testPath: 'test', watchPath: '.'});
     done();
   });
 
@@ -37,7 +37,7 @@ suite('parseApplicationArguments', function() {
     var fullArgArray = fixtures.fullArgumentArray();
     fullArgArray.push('-x', 'kazoo');
     var argumentObject = argumentParser.parseApplicationArguments(fullArgArray);
-    expect(argumentObject).to.deep.equal({testExecutor: 'mocha', testPath: 'tests', watchPath: 'lib'});
+    expect(argumentObject).to.equal({testExecutor: 'mocha', testPath: 'tests', watchPath: 'lib'});
     done();
   });
 });
