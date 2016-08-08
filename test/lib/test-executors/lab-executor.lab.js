@@ -13,7 +13,7 @@ var mockProcess = require('child_process');
 var executor = require('../../../lib/test-executors/lab-executor');
 
 var containsCorrectPath = function(fullPath) {
-  return fullPath.indexOf('/report.html') > 0;
+  return fullPath.indexOf('/coverage/index.html') > 0;
 };
 
 suite('lab: runTests', function() {
@@ -23,7 +23,7 @@ suite('lab: runTests', function() {
     executor.runTests('test');
 
     expect(mockProcess.exec.calledOnce).to.equal(true);
-    expect(mockProcess.exec.args[0][0].substring(0, 35)).to.equal('node_modules/lab/bin/lab -r html -o');
+    expect(mockProcess.exec.args[0][0].substring(0, 52)).to.equal('NODE_ENV=test && node_modules/lab/bin/lab -r html -o');
     expect(containsCorrectPath(mockProcess.exec.args[0][0].substring(35))).to.equal(true);
     mockProcess.exec.restore();
     done();
